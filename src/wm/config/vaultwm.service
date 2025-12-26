@@ -1,0 +1,13 @@
+[Unit]
+Description=VaultOS Window Manager
+After=graphical.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/vaultwm
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=graphical.target
+

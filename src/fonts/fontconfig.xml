@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+  <!-- VaultOS Font Configuration -->
+  <!-- Retro-futuristic font preferences for Fallout theme -->
+  
+  <!-- Default monospace font for terminal -->
+  <alias>
+    <family>monospace</family>
+    <prefer>
+      <family>Unifont</family>
+      <family>Terminus</family>
+      <family>IBM Plex Mono</family>
+      <family>DejaVu Sans Mono</family>
+    </prefer>
+  </alias>
+  
+  <!-- Default sans-serif font for UI -->
+  <alias>
+    <family>sans-serif</family>
+    <prefer>
+      <family>Orbitron</family>
+      <family>Rajdhani</family>
+      <family>Exo 2</family>
+      <family>DejaVu Sans</family>
+    </prefer>
+  </alias>
+  
+  <!-- Font rendering settings -->
+  <match target="font">
+    <edit name="antialias" mode="assign">
+      <bool>true</bool>
+    </edit>
+    <edit name="hinting" mode="assign">
+      <bool>true</bool>
+    </edit>
+    <edit name="hintstyle" mode="assign">
+      <const>hintslight</const>
+    </edit>
+    <edit name="rgba" mode="assign">
+      <const>rgb</const>
+    </edit>
+  </match>
+  
+  <!-- Subpixel rendering -->
+  <match target="font">
+    <edit name="lcdfilter" mode="assign">
+      <const>lcddefault</const>
+    </edit>
+  </match>
+  
+</fontconfig>
+

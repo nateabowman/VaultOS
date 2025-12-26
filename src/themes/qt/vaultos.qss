@@ -1,0 +1,179 @@
+/* VaultOS Qt Stylesheet - Fallout Aesthetic */
+/* Pip-Boy green and Vault-Tec colors */
+
+* {
+    color: #00FF41;
+    background-color: #000000;
+    font-family: "Unifont", monospace;
+    font-size: 12pt;
+}
+
+QMainWindow {
+    background-color: #000000;
+    color: #00FF41;
+}
+
+/* Buttons */
+QPushButton {
+    background-color: #003300;
+    color: #00FF41;
+    border: 2px solid #00FF41;
+    border-radius: 0px;
+    padding: 5px 10px;
+    font-family: "Unifont", monospace;
+}
+
+QPushButton:hover {
+    background-color: #00FF41;
+    color: #000000;
+}
+
+QPushButton:pressed {
+    background-color: #00AA2A;
+    color: #000000;
+}
+
+QPushButton:disabled {
+    background-color: #001100;
+    color: #006600;
+    border-color: #006600;
+}
+
+/* Line edits */
+QLineEdit {
+    background-color: #000000;
+    color: #00FF41;
+    border: 2px solid #00FF41;
+    padding: 5px;
+    font-family: "Unifont", monospace;
+}
+
+QLineEdit:focus {
+    border-color: #00FF41;
+    box-shadow: 0 0 5px #00FF41;
+}
+
+/* Labels */
+QLabel {
+    color: #00FF41;
+    font-family: "Unifont", monospace;
+}
+
+/* Text edits */
+QTextEdit {
+    background-color: #000000;
+    color: #00FF41;
+    border: 2px solid #00FF41;
+    font-family: "Unifont", monospace;
+}
+
+/* Tabs */
+QTabWidget::pane {
+    background-color: #000000;
+    border: 1px solid #00FF41;
+}
+
+QTabBar::tab {
+    background-color: #003300;
+    color: #00FF41;
+    border: 1px solid #00FF41;
+    padding: 5px 10px;
+}
+
+QTabBar::tab:selected {
+    background-color: #00FF41;
+    color: #000000;
+}
+
+/* Scrollbars */
+QScrollBar {
+    background-color: #000000;
+    border: 1px solid #00FF41;
+}
+
+QScrollBar::handle {
+    background-color: #00FF41;
+    border: 1px solid #003300;
+}
+
+QScrollBar::handle:hover {
+    background-color: #41FF65;
+}
+
+/* Menus */
+QMenu {
+    background-color: #000000;
+    color: #00FF41;
+    border: 2px solid #00FF41;
+}
+
+QMenu::item {
+    padding: 5px 10px;
+}
+
+QMenu::item:selected {
+    background-color: #00FF41;
+    color: #000000;
+}
+
+/* Toolbars */
+QToolBar {
+    background-color: #003300;
+    border-bottom: 2px solid #00FF41;
+}
+
+/* Status bars */
+QStatusBar {
+    background-color: #003300;
+    color: #00FF41;
+    border-top: 2px solid #00FF41;
+    padding: 5px;
+}
+
+/* Progress bars */
+QProgressBar {
+    background-color: #003300;
+    border: 1px solid #00FF41;
+    text-align: center;
+    color: #00FF41;
+}
+
+QProgressBar::chunk {
+    background-color: #00FF41;
+}
+
+/* List views */
+QListView {
+    background-color: #000000;
+    color: #00FF41;
+    border: 1px solid #00FF41;
+}
+
+QListView::item:selected {
+    background-color: #00FF41;
+    color: #000000;
+}
+
+/* Tree views */
+QTreeView {
+    background-color: #000000;
+    color: #00FF41;
+    border: 1px solid #00FF41;
+}
+
+QTreeView::item:selected {
+    background-color: #00FF41;
+    color: #000000;
+}
+
+/* Frames */
+QFrame {
+    border: 1px solid #00FF41;
+    background-color: #000000;
+}
+
+/* Splitters */
+QSplitter::handle {
+    background-color: #00FF41;
+}
+

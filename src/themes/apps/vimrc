@@ -1,0 +1,54 @@
+" VaultOS Vim Configuration
+" Fallout-themed vim configuration
+
+" Colorscheme (Pip-Boy green)
+colorscheme desert
+set background=dark
+
+" Custom color overrides for Pip-Boy theme
+highlight Normal ctermfg=46 ctermbg=0 guifg=#00FF41 guibg=#000000
+highlight Comment ctermfg=2 ctermbg=0 guifg=#006600 guibg=#000000
+highlight Constant ctermfg=46 ctermbg=0 guifg=#00FF41 guibg=#000000
+highlight Identifier ctermfg=46 ctermbg=0 guifg=#00FF41 guibg=#000000
+highlight Statement ctermfg=46 ctermbg=0 guifg=#00FF41 guibg=#000000
+highlight PreProc ctermfg=3 ctermbg=0 guifg=#FFFF41 guibg=#000000
+highlight Type ctermfg=46 ctermbg=0 guifg=#00FF41 guibg=#000000
+highlight Special ctermfg=46 ctermbg=0 guifg=#00FF41 guibg=#000000
+highlight Underlined ctermfg=46 ctermbg=0 guifg=#00FF41 guibg=#000000
+highlight Error ctermfg=1 ctermbg=0 guifg=#FF0041 guibg=#000000
+highlight Todo ctermfg=3 ctermbg=0 guifg=#FFFF41 guibg=#000000
+
+" Status line
+set statusline=%F\ %m\ %r\ Line:\ %l\ Col:\ %c\ [%p%%]
+set laststatus=2
+highlight StatusLine ctermfg=46 ctermbg=0 guifg=#00FF41 guibg=#000000
+
+" Line numbers
+set number
+highlight LineNr ctermfg=2 ctermbg=0 guifg=#006600 guibg=#000000
+
+" Cursor
+highlight Cursor ctermfg=0 ctermbg=46 guifg=#000000 guibg=#00FF41
+set cursorline
+highlight CursorLine ctermbg=233 guibg=#121212
+
+" Search
+highlight Search ctermfg=0 ctermbg=46 guifg=#000000 guibg=#00FF41
+
+" Font
+set guifont=Unifont\ 12
+
+" General settings
+set encoding=utf-8
+set fileencoding=utf-8
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set smartindent
+
+" Fallout-themed mappings
+nnoremap <leader>v :e ~/.vimrc<CR>
+nnoremap <leader>s :w<CR>
+nnoremap <leader>q :q<CR>
+

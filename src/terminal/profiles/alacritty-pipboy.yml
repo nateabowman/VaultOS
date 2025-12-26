@@ -1,0 +1,63 @@
+# Alacritty Terminal Configuration - Pip-Boy Theme
+# VaultOS Fallout-themed terminal profile
+
+window:
+  padding:
+    x: 10
+    y: 10
+  opacity: 0.95
+  decorations: none
+  startup_mode: Windowed
+
+font:
+  normal:
+    family: "Unifont"
+    style: Regular
+  bold:
+    family: "Unifont"
+    style: Bold
+  size: 14
+
+colors:
+  primary:
+    background: "#000000"
+    foreground: "#00FF41"
+  cursor:
+    text: "#000000"
+    cursor: "#00FF41"
+  selection:
+    text: "#000000"
+    background: "#00FF41"
+  normal:
+    black: "#000000"
+    red: "#FF0041"
+    green: "#00FF41"
+    yellow: "#FFFF41"
+    blue: "#0041FF"
+    magenta: "#FF41FF"
+    cyan: "#41FFFF"
+    white: "#C0C0C0"
+  bright:
+    black: "#404040"
+    red: "#FF4141"
+    green: "#41FF41"
+    yellow: "#FFFF41"
+    blue: "#4141FF"
+    magenta: "#FF41FF"
+    cyan: "#41FFFF"
+    white: "#FFFFFF"
+
+cursor:
+  style: Block
+  unfocused_hollow: true
+
+shell:
+  program: /bin/bash
+  args:
+    - --login
+
+background_opacity: 0.95
+
+bell:
+  animation: None
+

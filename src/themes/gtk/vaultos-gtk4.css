@@ -1,0 +1,151 @@
+/* VaultOS GTK4 Theme - Fallout Aesthetic */
+/* Pip-Boy green and Vault-Tec colors */
+
+window {
+    background-color: #000000;
+    color: #00FF41;
+}
+
+/* Buttons */
+button {
+    background-color: #003300;
+    color: #00FF41;
+    border: 2px solid #00FF41;
+    border-radius: 0px;
+    padding: 5px 10px;
+    font-family: "Unifont", monospace;
+}
+
+button:hover {
+    background-color: #00FF41;
+    color: #000000;
+}
+
+button:active {
+    background-color: #00AA2A;
+    color: #000000;
+}
+
+button:disabled {
+    background-color: #001100;
+    color: #006600;
+    border-color: #006600;
+}
+
+/* Entry fields */
+entry {
+    background-color: #000000;
+    color: #00FF41;
+    border: 2px solid #00FF41;
+    padding: 5px;
+    font-family: "Unifont", monospace;
+}
+
+entry:focus {
+    border-color: #00FF41;
+    box-shadow: 0 0 5px #00FF41;
+}
+
+/* Labels */
+label {
+    color: #00FF41;
+    font-family: "Unifont", monospace;
+}
+
+/* Notebook/Tabs */
+notebook {
+    background-color: #000000;
+}
+
+notebook tab {
+    background-color: #003300;
+    color: #00FF41;
+    border: 1px solid #00FF41;
+    padding: 5px 10px;
+}
+
+notebook tab:checked {
+    background-color: #00FF41;
+    color: #000000;
+}
+
+/* Scrollbars */
+scrollbar {
+    background-color: #000000;
+}
+
+scrollbar slider {
+    background-color: #00FF41;
+    border: 1px solid #003300;
+}
+
+scrollbar slider:hover {
+    background-color: #41FF65;
+}
+
+/* Menus */
+menu {
+    background-color: #000000;
+    color: #00FF41;
+    border: 2px solid #00FF41;
+}
+
+menuitem {
+    padding: 5px 10px;
+}
+
+menuitem:hover {
+    background-color: #00FF41;
+    color: #000000;
+}
+
+/* Toolbars */
+toolbar {
+    background-color: #003300;
+    border-bottom: 2px solid #00FF41;
+}
+
+/* Status bars */
+statusbar {
+    background-color: #003300;
+    color: #00FF41;
+    border-top: 2px solid #00FF41;
+    padding: 5px;
+}
+
+/* Progress bars */
+progressbar {
+    background-color: #003300;
+    border: 1px solid #00FF41;
+}
+
+progressbar progress {
+    background-color: #00FF41;
+}
+
+/* Tree views and lists */
+treeview {
+    background-color: #000000;
+    color: #00FF41;
+}
+
+treeview:selected {
+    background-color: #00FF41;
+    color: #000000;
+}
+
+/* Frames */
+frame {
+    border: 1px solid #00FF41;
+    background-color: #000000;
+}
+
+/* Paned widgets */
+paned {
+    background-color: #000000;
+}
+
+paned separator {
+    background-color: #00FF41;
+}
+

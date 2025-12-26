@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=VaultWM
+Comment=VaultOS Fallout-themed Window Manager
+Exec=vaultwm
+Type=Application
+DesktopNames=VaultOS
+X-LightDM-DesktopName=VaultOS
+X-GDM-DesktopName=VaultOS
+

@@ -1,0 +1,9 @@
+[Plymouth Theme]
+Name=VaultOS
+Description=Fallout-themed boot splash for VaultOS
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/vaultos
+ScriptFile=/usr/share/plymouth/themes/vaultos/vaultos.script
+

@@ -1,0 +1,44 @@
+# VaultOS Plymouth Boot Splash Script
+# Animated Fallout-themed boot sequence
+
+# Window properties
+Window.SetBackgroundTopColor(0.0, 0.0, 0.0);        # Black
+Window.SetBackgroundBottomColor(0.0, 0.2, 0.0);      # Dark green
+
+# Load images
+vault_door = Image("vault-door.png");
+pipboy = Image("pipboy.png");
+progress_bar = Image("progress-bar.png");
+
+# Animation function
+fun vault_animation() {
+    # Animate vault door opening or Pip-Boy boot sequence
+    my_image = vault_door;
+    my_image.SetX(Window.GetWidth() / 2 - my_image.GetWidth() / 2);
+    my_image.SetY(Window.GetHeight() / 2 - my_image.GetHeight() / 2);
+    
+    # Fade in
+    my_image.SetOpacity(0);
+    my_image.SetOpacity(1);
+    
+    # Show progress bar at bottom
+    progress_bar.SetX(Window.GetWidth() / 2 - progress_bar.GetWidth() / 2);
+    progress_bar.SetY(Window.GetHeight() - 100);
+    progress_bar.SetOpacity(1);
+}
+
+# Message display
+fun message_callback(text) {
+    my_image = vault_door;
+    my_message = Sprite();
+    my_message.SetPosition(my_image.GetX(), my_image.GetY() + my_image.GetHeight() + 20, 10000);
+    my_message.SetZ(10000);
+    my_message.SetText(text);
+    my_message.SetColor(0.0, 1.0, 0.25);  # Pip-Boy green
+}
+
+Plymouth.SetMessageFunction(message_callback);
+
+# Start animation
+vault_animation();
+
