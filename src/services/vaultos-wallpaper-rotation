@@ -1,0 +1,86 @@
+#!/bin/bash
+#
+# VaultOS Wallpaper Rotation Service
+# Rotates wallpapers on a schedule
+#
+
+WALLPAPER_DIR="$HOME/.local/share/vaultos/wallpapers"
+CONFIG_FILE="$HOME/.config/vaultos/wallpaper.conf"
+PIDFILE="/var/run/vaultos-wallpaper-rotation.pid"
+
+# Default settings
+ROTATION_INTERVAL=3600  # 1 hour
+ROTATION_MODE="sequential"  # sequential or random
+
+# Create PID file
+echo $$ > "$PIDFILE"
+
+# Load configuration
+load_config() {
+    if [ -f "$CONFIG_FILE" ]; then
+        source "$CONFIG_FILE"
+    fi
+}
+
+# Get wallpaper list
+get_wallpapers() {
+    find "$WALLPAPER_DIR" -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" \) 2>/dev/null | sort
+}
+
+# Set wallpaper
+set_wallpaper() {
+    local wallpaper=$1
+    
+    if [ ! -f "$wallpaper" ]; then
+        return 1
+    fi
+    
+    # Try feh (for VaultWM)
+    if command -v feh &> /dev/null; then
+        feh --bg-fill "$wallpaper" 2>/dev/null
+    fi
+    
+    # Try GNOME
+    if command -v gsettings &> /dev/null; then
+        gsettings set org.gnome.desktop.background picture-uri "file://$wallpaper" 2>/dev/null || true
+    fi
+    
+    echo "Wallpaper set to: $wallpaper"
+}
+
+# Signal handler
+cleanup() {
+    rm -f "$PIDFILE"
+    exit 0
+}
+
+trap cleanup SIGTERM SIGINT
+
+# Main loop
+main() {
+    load_config
+    
+    WALLPAPERS=($(get_wallpapers))
+    
+    if [ ${#WALLPAPERS[@]} -eq 0 ]; then
+        echo "No wallpapers found in $WALLPAPER_DIR"
+        exit 1
+    fi
+    
+    CURRENT_INDEX=0
+    
+    while true; do
+        if [ "$ROTATION_MODE" = "random" ]; then
+            RANDOM_INDEX=$((RANDOM % ${#WALLPAPERS[@]}))
+            set_wallpaper "${WALLPAPERS[$RANDOM_INDEX]}"
+        else
+            set_wallpaper "${WALLPAPERS[$CURRENT_INDEX]}"
+            CURRENT_INDEX=$(( (CURRENT_INDEX + 1) % ${#WALLPAPERS[@]} ))
+        fi
+        
+        sleep "$ROTATION_INTERVAL"
+    done
+}
+
+main
+

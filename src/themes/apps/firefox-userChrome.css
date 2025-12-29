@@ -1,0 +1,60 @@
+/* Firefox userChrome.css for VaultOS theme */
+/* Place in ~/.mozilla/firefox/<profile>/chrome/userChrome.css */
+
+/* Enable userChrome.css */
+@-moz-document url(chrome://browser/content/browser.xhtml) {
+    /* Main window background */
+    #navigator-toolbox {
+        background-color: #000000 !important;
+        color: #00FF41 !important;
+    }
+    
+    /* Tabs */
+    .tab-background {
+        background-color: #003300 !important;
+        border: 1px solid #00FF41 !important;
+    }
+    
+    .tab-background[selected="true"] {
+        background-color: #00FF41 !important;
+        color: #000000 !important;
+    }
+    
+    .tab-label {
+        color: #00FF41 !important;
+    }
+    
+    .tab-background[selected="true"] .tab-label {
+        color: #000000 !important;
+    }
+    
+    /* URL bar */
+    #urlbar {
+        background-color: #000000 !important;
+        border: 2px solid #00FF41 !important;
+        color: #00FF41 !important;
+    }
+    
+    #urlbar-input {
+        color: #00FF41 !important;
+    }
+    
+    /* Navigation buttons */
+    .toolbarbutton-1 {
+        background-color: transparent !important;
+        color: #00FF41 !important;
+        border: 1px solid transparent !important;
+    }
+    
+    .toolbarbutton-1:hover {
+        background-color: #00FF41 !important;
+        color: #000000 !important;
+    }
+    
+    /* Bookmarks toolbar */
+    #PersonalToolbar {
+        background-color: #003300 !important;
+        border-bottom: 2px solid #00FF41 !important;
+    }
+}
+

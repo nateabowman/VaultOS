@@ -1,0 +1,64 @@
+{
+  "vaultos_config_version": "1.0",
+  "window_manager": {
+    "window_gap": 5,
+    "border_width": 2,
+    "default_layout": "tiling",
+    "layout_gap": 5,
+    "status_bar": {
+      "enabled": true,
+      "height": 30,
+      "update_interval": 1
+    },
+    "colors": {
+      "focused": "#00FF41",
+      "unfocused": "#003300",
+      "urgent": "#FF0000",
+      "background": "#000000"
+    },
+    "terminal": {
+      "primary": "alacritty",
+      "fallback": "xterm"
+    },
+    "launcher": {
+      "primary": "dmenu_run",
+      "fallback": "rofi -show drun"
+    }
+  },
+  "theme": {
+    "current": "pipboy",
+    "gtk_theme": "VaultOS",
+    "icon_theme": "VaultOS"
+  },
+  "workspaces": {
+    "count": 9,
+    "names": ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+  },
+  "key_bindings": {
+    "mod_key": "Mod4",
+    "bindings": {
+      "launch_terminal": "Mod4+Return",
+      "launch_launcher": "Mod4+d",
+      "close_window": "Mod4+q",
+      "toggle_layout": "Mod4+t",
+      "toggle_float": "Mod4+f",
+      "focus_next": "Mod4+l",
+      "focus_prev": "Mod4+h",
+      "switch_workspace_1": "Mod4+1",
+      "switch_workspace_2": "Mod4+2",
+      "switch_workspace_3": "Mod4+3",
+      "switch_workspace_4": "Mod4+4",
+      "switch_workspace_5": "Mod4+5",
+      "switch_workspace_6": "Mod4+6",
+      "switch_workspace_7": "Mod4+7",
+      "switch_workspace_8": "Mod4+8",
+      "switch_workspace_9": "Mod4+9"
+    }
+  },
+  "applications": {
+    "default_terminal": "alacritty",
+    "default_launcher": "dmenu_run",
+    "default_file_manager": "ranger"
+  }
+}
+

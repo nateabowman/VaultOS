@@ -1,0 +1,42 @@
+{
+  "window_manager": {
+    "border_width": 2,
+    "gap_size": 5,
+    "default_layout": "tiling",
+    "border_color_focused": "0x00FF41",
+    "border_color_unfocused": "0x003300",
+    "border_color_urgent": "0xFF0000"
+  },
+  "theme": {
+    "name": "pipboy",
+    "gtk_theme": "VaultOS",
+    "icon_theme": "VaultOS"
+  },
+  "workspaces": [
+    {"number": 1, "name": "Main"},
+    {"number": 2, "name": "Web"},
+    {"number": 3, "name": "Code"},
+    {"number": 4, "name": "Media"},
+    {"number": 5, "name": "Comms"},
+    {"number": 6, "name": "6"},
+    {"number": 7, "name": "7"},
+    {"number": 8, "name": "8"},
+    {"number": 9, "name": "9"}
+  ],
+  "key_bindings": {
+    "terminal": "Return",
+    "launcher": "d",
+    "close": "q",
+    "toggle_layout": "t",
+    "toggle_float": "f",
+    "resize": "r",
+    "move": "m"
+  },
+  "applications": {
+    "terminal": "alacritty",
+    "terminal_fallback": "xterm",
+    "launcher": "dmenu_run",
+    "launcher_fallback": "rofi -show drun"
+  }
+}
+

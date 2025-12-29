@@ -149,3 +149,232 @@ paned separator {
     background-color: #00FF41;
 }
 
+/* Checkboxes */
+checkbutton {
+    background-color: transparent;
+}
+
+check {
+    background-color: #000000;
+    border: 2px solid #00FF41;
+    border-radius: 0px;
+    min-width: 16px;
+    min-height: 16px;
+}
+
+check:checked {
+    background-color: #00FF41;
+    color: #000000;
+}
+
+/* Radio buttons */
+radiobutton {
+    background-color: transparent;
+}
+
+radio {
+    background-color: #000000;
+    border: 2px solid #00FF41;
+    border-radius: 50%;
+    min-width: 16px;
+    min-height: 16px;
+}
+
+radio:checked {
+    background-color: #00FF41;
+}
+
+/* Combo boxes */
+combobox {
+    background-color: #000000;
+    color: #00FF41;
+    border: 2px solid #00FF41;
+}
+
+combobox:hover {
+    border-color: #41FF65;
+}
+
+/* Spin buttons */
+spinbutton {
+    background-color: #000000;
+    color: #00FF41;
+    border: 2px solid #00FF41;
+}
+
+spinbutton button {
+    background-color: #003300;
+    color: #00FF41;
+    border: none;
+}
+
+spinbutton button:hover {
+    background-color: #00FF41;
+    color: #000000;
+}
+
+/* Switch widgets */
+switch {
+    background-color: #003300;
+    border: 2px solid #00FF41;
+    border-radius: 20px;
+}
+
+switch:checked {
+    background-color: #00FF41;
+}
+
+switch slider {
+    background-color: #00FF41;
+    border-radius: 50%;
+}
+
+switch:checked slider {
+    background-color: #000000;
+}
+
+/* Scale / Slider */
+scale {
+    background-color: #000000;
+}
+
+scale slider {
+    background-color: #00FF41;
+    border: 2px solid #003300;
+    border-radius: 50%;
+}
+
+scale slider:hover {
+    background-color: #41FF65;
+}
+
+scale trough {
+    background-color: #003300;
+    border: 1px solid #00FF41;
+}
+
+scale highlight {
+    background-color: #00FF41;
+}
+
+/* Lists */
+list {
+    background-color: #000000;
+    color: #00FF41;
+}
+
+list row {
+    background-color: transparent;
+    color: #00FF41;
+}
+
+list row:selected {
+    background-color: #00FF41;
+    color: #000000;
+}
+
+list row:hover {
+    background-color: #003300;
+}
+
+/* Popovers */
+popover {
+    background-color: #000000;
+    border: 2px solid #00FF41;
+    color: #00FF41;
+}
+
+/* Tooltips */
+tooltip {
+    background-color: #003300;
+    color: #00FF41;
+    border: 1px solid #00FF41;
+    padding: 5px;
+}
+
+/* Header bars */
+headerbar {
+    background-color: #003300;
+    color: #00FF41;
+    border-bottom: 2px solid #00FF41;
+}
+
+headerbar button {
+    background-color: transparent;
+    border: none;
+}
+
+headerbar button:hover {
+    background-color: #00FF41;
+    color: #000000;
+}
+
+/* Stack switcher */
+stackswitcher button {
+    background-color: #003300;
+    color: #00FF41;
+    border: 1px solid #00FF41;
+}
+
+stackswitcher button:checked {
+    background-color: #00FF41;
+    color: #000000;
+}
+
+/* Info bars */
+infobar {
+    background-color: #003300;
+    color: #00FF41;
+    border-bottom: 1px solid #00FF41;
+}
+
+/* Separators */
+separator {
+    background-color: #00FF41;
+    min-width: 1px;
+    min-height: 1px;
+}
+
+/* Link buttons */
+button.link {
+    background-color: transparent;
+    border: none;
+    color: #00FF41;
+    text-decoration: underline;
+}
+
+button.link:hover {
+    color: #41FF65;
+}
+
+/* Level bars */
+levelbar {
+    background-color: #003300;
+    border: 1px solid #00FF41;
+}
+
+levelbar block {
+    background-color: #00FF41;
+}
+
+/* Text view */
+textview {
+    background-color: #000000;
+    color: #00FF41;
+}
+
+textview text {
+    background-color: #000000;
+    color: #00FF41;
+}
+
+textview selection {
+    background-color: #00FF41;
+    color: #000000;
+}
+
+/* Drawing area */
+drawingarea {
+    background-color: #000000;
+    color: #00FF41;
+}

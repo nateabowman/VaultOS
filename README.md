@@ -199,7 +199,13 @@ GPLv3 - See LICENSE file for details
 
 ## Status
 
-VaultOS is in active development. The core components are implemented, but some assets (icons, wallpapers, graphics) need to be created or sourced.
+VaultOS is in active development. Core components are implemented and continuously improved. See [CHANGELOG.md](CHANGELOG.md) for recent changes.
+
+**Current Version**: 1.0.0 (see [VERSION](VERSION))
+
+## Version History
+
+See [CHANGELOG.md](CHANGELOG.md) for complete version history and release notes.
 
 ## Support
 

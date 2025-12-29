@@ -1,0 +1,13 @@
+[Unit]
+Description=VaultOS Theme Management Daemon
+After=graphical.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/vaultos-theme-daemon
+Restart=on-failure
+User=%i
+
+[Install]
+WantedBy=graphical.target
+

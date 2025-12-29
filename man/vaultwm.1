@@ -1,0 +1,72 @@
+.TH VAULTWM 1 "2024-01-01" "VaultOS" "VaultOS Manual"
+.SH NAME
+vaultwm \- VaultOS window manager
+.SH SYNOPSIS
+.B vaultwm
+.SH DESCRIPTION
+.B vaultwm
+is a lightweight, Fallout-themed window manager for X11 with Pip-Boy-style
+status bar. It features tiling and floating layouts, workspace support, and
+keyboard-driven navigation.
+.SH KEY BINDINGS
+.TP
+.B Mod4 + Enter
+Launch terminal
+.TP
+.B Mod4 + D
+Launch application launcher
+.TP
+.B Mod4 + Q
+Close focused window
+.TP
+.B Mod4 + T
+Toggle layout (Tiling → Floating → Monocle)
+.TP
+.B Mod4 + F
+Toggle floating for current window
+.TP
+.B Mod4 + 1-9
+Switch to workspace 1-9
+.TP
+.B Mod4 + H/J/K/L
+Navigate windows (vim-style)
+.TP
+.B Mod4 + Arrow Keys
+Navigate windows
+.TP
+.B Mod4 + Left Click
+Move window (makes it floating)
+.TP
+.B Mod4 + Right Click
+Resize window (makes it floating)
+.PP
+Mod4 is typically the Super/Windows key.
+.SH CONFIGURATION
+Runtime configuration file:
+.I ~/.config/vaultwm/config
+.PP
+Compile-time configuration:
+.I /usr/share/vaultwm/config.h
+.SH IPC
+VaultWM supports IPC via named pipe:
+.I ~/.config/vaultwm/vaultwm_ipc
+.PP
+Send commands by writing to the FIFO:
+.IP
+echo "focus_next" > ~/.config/vaultwm/vaultwm_ipc
+.SH FILES
+.TP
+.I ~/.config/vaultwm/config
+Runtime configuration file
+.TP
+.I ~/.config/vaultwm/vaultwm_ipc
+IPC named pipe
+.TP
+.I /usr/share/vaultwm/config.h
+Compile-time configuration header
+.SH SEE ALSO
+.BR vaultos-config-tui (1),
+.BR vaultos-help (1)
+.SH AUTHORS
+VaultOS Team
+

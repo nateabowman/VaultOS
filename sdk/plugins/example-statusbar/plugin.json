@@ -1,0 +1,9 @@
+{
+  "name": "example-statusbar",
+  "version": "1.0.0",
+  "description": "Example status bar plugin",
+  "type": "statusbar",
+  "author": "VaultOS Team",
+  "dependencies": []
+}
+

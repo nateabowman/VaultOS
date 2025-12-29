@@ -27,5 +27,14 @@
 /* Status bar update interval (seconds) */
 #define STATUS_UPDATE_INTERVAL 1
 
+/* Window management */
+#define MAX_WORKSPACES 9
+#define WINDOW_GAP 5
+#define RESIZE_STEP 10
+
+/* Application launcher */
+#define LAUNCHER_CMD "dmenu_run"
+#define LAUNCHER_FALLBACK "rofi -show drun"
+
 #endif /* VAULTWM_CONFIG_H */
 

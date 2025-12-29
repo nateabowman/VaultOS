@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VaultOS Configuration Schema",
+  "type": "object",
+  "properties": {
+    "window_manager": {
+      "type": "object",
+      "properties": {
+        "border_width": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10,
+          "default": 2
+        },
+        "gap_size": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 50,
+          "default": 5
+        },
+        "default_layout": {
+          "type": "string",
+          "enum": ["tiling", "floating", "monocle", "grid", "fibonacci"],
+          "default": "tiling"
+        }
+      }
+    },
+    "theme": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "enum": ["pipboy", "vaulttec"],
+          "default": "pipboy"
+        },
+        "gtk_theme": {
+          "type": "string",
+          "default": "VaultOS"
+        },
+        "icon_theme": {
+          "type": "string",
+          "default": "VaultOS"
+        }
+      }
+    },
+    "workspaces": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "maxItems": 9
+    },
+    "key_bindings": {
+      "type": "object",
+      "properties": {
+        "terminal": {
+          "type": "string",
+          "default": "Return"
+        },
+        "launcher": {
+          "type": "string",
+          "default": "d"
+        },
+        "close": {
+          "type": "string",
+          "default": "q"
+        },
+        "toggle_layout": {
+          "type": "string",
+          "default": "t"
+        },
+        "toggle_float": {
+          "type": "string",
+          "default": "f"
+        }
+      }
+    },
+    "applications": {
+      "type": "object",
+      "properties": {
+        "terminal": {
+          "type": "string",
+          "default": "alacritty"
+        },
+        "launcher": {
+          "type": "string",
+          "default": "dmenu_run"
+        }
+      }
+    }
+  }
+}
+

@@ -36,7 +36,8 @@ export PS1='$(vaultos_prompt)'
 
 # Fallout-themed aliases
 alias vault='cd ~'
-alias pipboy='clear && echo "Pip-Boy 3000 - VaultOS Terminal Interface"'
+alias pipboy='clear && echo "Pip-Boy 3000 - VaultOS Terminal Interface" && echo "Run pipboy-status for detailed system information"'
+alias pipboy-status='bash ~/.local/share/vaultos/scripts/pipboy-status.sh 2>/dev/null || echo "Pip-Boy status script not found"'
 alias status='echo "System Status: OPERATIONAL" && uptime'
 alias inventory='ls -lah'
 alias quest='echo "Active Quests: None"'
@@ -44,6 +45,9 @@ alias map='pwd'
 alias radio='mpv --no-video'  # If mpv is installed
 alias stimpak='sudo'  # For system administration
 alias nuka='echo "Nuka-Cola: Out of stock"'
+alias wasteland='df -h'  # Disk usage
+alias vault-tec='systemctl status'  # System services
+alias terminal='clear'  # Clear terminal
 
 # Useful command aliases with Fallout flavor
 alias lock='xlock'  # Screen lock

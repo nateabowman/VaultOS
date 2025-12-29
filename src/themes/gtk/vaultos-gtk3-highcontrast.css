@@ -1,0 +1,40 @@
+/* VaultOS GTK3 High Contrast Theme */
+/* Accessibility-friendly high contrast variant */
+
+* {
+    color: #FFFFFF;
+    background-color: #000000;
+}
+
+window {
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 3px solid #00FF41;
+}
+
+button {
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 3px solid #00FF41;
+    padding: 8px 12px;
+    font-size: 14pt;
+}
+
+button:hover {
+    background-color: #00FF41;
+    color: #000000;
+}
+
+entry {
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 3px solid #00FF41;
+    padding: 8px;
+    font-size: 14pt;
+}
+
+label {
+    color: #FFFFFF;
+    font-size: 14pt;
+}
+

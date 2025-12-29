@@ -1,0 +1,15 @@
+# VaultOS Accessibility Color Schemes
+
+# High Contrast
+high_contrast_fg=#FFFFFF
+high_contrast_bg=#000000
+high_contrast_border=#00FF41
+
+# Color Blind Friendly (Protanopia/Deuteranopia)
+colorblind_primary=#00FFFF
+colorblind_secondary=#FF00FF
+colorblind_accent=#FFFF00
+
+# Large Text Support
+large_text_size=16pt
+

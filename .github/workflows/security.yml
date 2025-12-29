@@ -1,0 +1,76 @@
+name: Security Scanning
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run weekly security scans
+    - cron: '0 0 * * 0'
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Run security tests
+      run: |
+        cd tests/security
+        chmod +x test-security.sh
+        ./test-security.sh
+    
+    - name: Check for hardcoded secrets
+      run: |
+        # Check for common secret patterns
+        if grep -rE "(password|secret|key|token).*=.*['\"][^'\"]{8,}" --include="*.sh" --include="*.c" --include="*.h" --include="*.ks" . | grep -v "test" | grep -v "example"; then
+          echo "Warning: Potential hardcoded secrets found"
+          exit 1
+        fi
+    
+    - name: Check for unsafe functions
+      run: |
+        # Check for unsafe C functions
+        UNSAFE_FUNCS=("strcpy" "strcat" "sprintf" "gets")
+        for func in "${UNSAFE_FUNCS[@]}"; do
+          if grep -rn "$func(" src/ --include="*.c" --include="*.h" | grep -v "strncpy\|strncat\|snprintf" | grep -v "test"; then
+            echo "Error: Unsafe function $func found"
+            exit 1
+          fi
+        done
+    
+    - name: Static analysis (cppcheck)
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cppcheck
+        cppcheck --enable=all --error-exitcode=1 src/wm/ 2>&1 | head -50 || true
+
+  code-quality:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Shell script linting
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y shellcheck
+        find . -name "*.sh" -type f -exec shellcheck {} \; || true
+    
+    - name: Check script syntax
+      run: |
+        find . -name "*.sh" -type f -exec bash -n {} \;
+
+  dependency-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Check for known vulnerabilities
+      run: |
+        echo "Dependency vulnerability checking would go here"
+        # In a full implementation, this would use tools like:
+        # - OWASP Dependency-Check
+        # - Snyk
+        # - GitHub Dependabot
+

@@ -1,0 +1,38 @@
+/* VaultOS Theme Template */
+/* Custom theme based on this template */
+
+/* Color Variables */
+:root {
+    --primary-color: #00FF41;      /* Pip-Boy green */
+    --background-color: #000000;   /* Black */
+    --accent-color: #003300;       /* Dark green */
+    --text-color: #00FF41;         /* Text color */
+    --border-color: #00FF41;       /* Border color */
+}
+
+/* Base Styles */
+* {
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+/* Window Manager Styles */
+window {
+    background-color: var(--background-color);
+    border: 2px solid var(--border-color);
+}
+
+/* Widget Styles */
+button {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    border: 1px solid var(--border-color);
+}
+
+button:hover {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
+/* Customize as needed */
+

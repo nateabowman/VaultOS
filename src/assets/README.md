@@ -6,10 +6,15 @@ Wallpapers, graphics, and visual assets for VaultOS.
 
 ```
 assets/
-├── wallpapers/      # Desktop wallpapers
-├── boot/            # Boot graphics (GRUB, Plymouth)
-├── logos/           # VaultOS and Vault-Tec logos
-└── misc/            # Miscellaneous graphics
+├── wallpapers/           # Desktop wallpapers
+│   ├── pipboy/          # Pip-Boy green themed wallpapers
+│   ├── vaulttec/        # Vault-Tec blue/gold themed wallpapers
+│   └── patterns/        # Retro-futuristic patterns
+├── boot/                # Boot graphics (GRUB, Plymouth)
+│   ├── grub/            # GRUB bootloader graphics
+│   └── plymouth/        # Plymouth boot splash graphics
+├── logos/               # VaultOS and Vault-Tec logos
+└── misc/                # Miscellaneous graphics
 ```
 
 ## Wallpapers

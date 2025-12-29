@@ -1,0 +1,14 @@
+[Unit]
+Description=VaultOS Theme Management Service
+After=graphical.target
+
+[Service]
+Type=dbus
+BusName=org.vaultos.ThemeManager
+ExecStart=/usr/libexec/vaultos-theme-manager
+Restart=on-failure
+User=%i
+
+[Install]
+WantedBy=graphical.target
+

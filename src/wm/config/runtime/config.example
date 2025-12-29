@@ -1,0 +1,49 @@
+# VaultWM Runtime Configuration File
+# Place this file at ~/.config/vaultwm/config
+# Restart VaultWM or reload configuration to apply changes
+
+# Terminal command
+terminal = "alacritty"
+# Alternative terminal if primary not available
+terminal_fallback = "xterm"
+
+# Application launcher
+launcher = "dmenu_run"
+launcher_fallback = "rofi -show drun"
+
+# Status bar update interval (seconds)
+status_update_interval = 1
+
+# Window gaps (pixels)
+window_gap = 5
+
+# Border width (pixels)
+border_width = 2
+
+# Colors (hex format)
+color_focused = "#00FF41"    # Pip-Boy green
+color_unfocused = "#003300"  # Dark green
+color_urgent = "#FF0000"     # Red for urgent windows
+color_background = "#000000" # Black
+
+# Status bar
+status_bar_height = 30
+status_bar_enabled = true
+
+# Layout settings
+default_layout = "tiling"  # tiling, floating, monocle
+layout_gap = 5
+
+# Key bindings (Mod4 = Super/Windows key)
+# Format: key = "command"
+# Available commands: launch_terminal, launch_launcher, close_window, toggle_layout, 
+#                     toggle_float, focus_next, focus_prev, switch_workspace_N
+
+# Workspace configuration
+workspace_count = 9
+workspace_names = "1,2,3,4,5,6,7,8,9"
+
+# Window rules (optional, for future use)
+# Format: window_class:rule = value
+# Example: "Firefox:float = true"
+

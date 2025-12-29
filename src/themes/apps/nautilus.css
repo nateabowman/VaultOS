@@ -1,0 +1,28 @@
+/* Nautilus File Manager Custom CSS */
+/* Fallout-themed styling for Nautilus */
+
+.nautilus-window {
+    background-color: #000000;
+    color: #00FF41;
+}
+
+.nautilus-window .sidebar {
+    background-color: #003300;
+    color: #00FF41;
+}
+
+.nautilus-window .sidebar row:selected {
+    background-color: #00FF41;
+    color: #000000;
+}
+
+.nautilus-window .view {
+    background-color: #000000;
+    color: #00FF41;
+}
+
+.nautilus-window .view:selected {
+    background-color: #00FF41;
+    color: #000000;
+}
+

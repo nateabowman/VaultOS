@@ -10,10 +10,11 @@ keyboard us
 # Network configuration
 network --bootproto=dhcp --device=link --activate
 
-# Root password (should be changed on first boot)
-rootpw --plaintext vaultos
-# User account
-user --name=vaultdweller --groups=wheel --password=vaultos --plaintext --gecos="Vault Dweller"
+# Root password - will be set on first boot (secure by default)
+# Using --lock to require password change on first boot
+rootpw --lock
+# User account - will be created on first boot with secure password
+# Default user creation moved to firstboot script for security
 
 # System timezone
 timezone America/New_York --utc
@@ -53,9 +54,6 @@ fontconfig
 # Install VaultOS custom packages
 # This will be populated with our custom RPMs
 
-# Set default shell to bash
-usermod -s /bin/bash vaultdweller
-
 # Enable services
 systemctl enable vaultwm.service || true
 
@@ -69,10 +67,55 @@ if [ -d /usr/share/plymouth/themes/vaultos ]; then
     plymouth-set-default-theme vaultos
 fi
 
+# Install security hardening script
+if [ -f /usr/share/vaultos/scripts/hardening.sh ]; then
+    chmod +x /usr/share/vaultos/scripts/hardening.sh
+fi
+
+# Configure firewall (basic rules)
+if command -v firewall-cmd &> /dev/null; then
+    firewall-cmd --permanent --add-service=ssh || true
+    firewall-cmd --reload || true
+fi
+
+# Disable unnecessary services for security
+systemctl disable bluetooth.service || true
+systemctl disable cups.service || true
+
 %end
 
-# First boot configuration
+# First boot configuration - REQUIRED for security
 %firstboot --interactive
-# User will be prompted to configure system on first boot
+#!/bin/bash
+# First boot security configuration script
+
+# Force root password change
+echo "VaultOS First Boot Security Configuration"
+echo "=========================================="
+echo ""
+echo "SECURITY: You must set a root password."
+passwd root
+
+# Create default user with secure password
+echo ""
+echo "Creating default user 'vaultdweller'..."
+echo "You will be prompted to set a secure password."
+useradd -m -G wheel -s /bin/bash -c "Vault Dweller" vaultdweller
+passwd vaultdweller
+
+# Set up sudo access
+echo "vaultdweller ALL=(ALL) ALL" >> /etc/sudoers.d/vaultos-users
+
+# Run security hardening script
+if [ -f /usr/share/vaultos/scripts/hardening.sh ]; then
+    /usr/share/vaultos/scripts/hardening.sh
+fi
+
+# Mark first boot as complete
+touch /etc/vaultos/firstboot-complete
+
+echo ""
+echo "First boot configuration complete!"
+echo "Please reboot the system."
 %end
 

@@ -1,0 +1,64 @@
+#!/bin/bash
+#
+# VaultOS Theme Management Daemon
+# Monitors theme changes and applies them system-wide
+#
+
+THEME_DIR="$HOME/.config/vaultos/themes"
+CURRENT_THEME_FILE="$HOME/.config/vaultos/current_theme"
+PIDFILE="/var/run/vaultos-theme-manager.pid"
+
+# Create PID file
+echo $$ > "$PIDFILE"
+
+# Signal handler
+cleanup() {
+    rm -f "$PIDFILE"
+    exit 0
+}
+
+trap cleanup SIGTERM SIGINT
+
+# Monitor theme changes
+monitor_theme_changes() {
+    while true; do
+        if [ -f "$CURRENT_THEME_FILE" ]; then
+            NEW_THEME=$(cat "$CURRENT_THEME_FILE" 2>/dev/null)
+            
+            if [ -n "$NEW_THEME" ] && [ "$NEW_THEME" != "$CURRENT_THEME" ]; then
+                apply_theme "$NEW_THEME"
+                CURRENT_THEME="$NEW_THEME"
+            fi
+        fi
+        
+        sleep 5
+    done
+}
+
+apply_theme() {
+    local theme=$1
+    echo "Applying theme: $theme"
+    
+    # Apply GTK theme
+    if command -v gsettings &> /dev/null; then
+        gsettings set org.gnome.desktop.interface gtk-theme "VaultOS" 2>/dev/null || true
+    fi
+    
+    # Apply icon theme
+    if command -v gsettings &> /dev/null; then
+        gsettings set org.gnome.desktop.interface icon-theme "VaultOS" 2>/dev/null || true
+    fi
+    
+    # Notify applications of theme change
+    if command -v notify-send &> /dev/null; then
+        notify-send "VaultOS" "Theme changed to $theme" 2>/dev/null || true
+    fi
+}
+
+# Initialize
+CURRENT_THEME=$(cat "$CURRENT_THEME_FILE" 2>/dev/null || echo "pipboy")
+apply_theme "$CURRENT_THEME"
+
+# Start monitoring
+monitor_theme_changes
+

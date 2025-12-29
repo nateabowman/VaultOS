@@ -1,0 +1,13 @@
+[Unit]
+Description=VaultOS Wallpaper Rotation Service
+After=graphical.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/vaultos-wallpaper-rotation
+Restart=on-failure
+User=%i
+
+[Install]
+WantedBy=graphical.target
+

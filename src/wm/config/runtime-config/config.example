@@ -1,0 +1,63 @@
+# VaultWM Runtime Configuration File
+# Place this file at ~/.config/vaultwm/config
+
+# Color Scheme
+# Options: pipboy, vaulttec
+color_scheme=pipboy
+
+# Window Border
+border_width=2
+border_color_focused=0x00FF41
+border_color_unfocused=0x003300
+border_color_urgent=0xFF0000
+
+# Window Gaps
+gap_size=5
+
+# Status Bar
+status_bar_height=30
+status_bar_update_interval=1
+
+# Key Bindings
+# Format: key=command
+# Mod4 keys are automatically prefixed
+terminal_key=Return
+launcher_key=d
+close_key=q
+toggle_layout_key=t
+toggle_float_key=f
+resize_key=r
+move_key=m
+
+# Terminal Command
+terminal_cmd=alacritty
+terminal_fallback=xterm
+
+# Application Launcher
+launcher_cmd=dmenu_run
+launcher_fallback=rofi -show drun
+
+# Layout Modes
+# Available: tiling, floating, monocle, grid, fibonacci
+default_layout=tiling
+
+# Workspace Names (optional)
+workspace_1=Main
+workspace_2=Web
+workspace_3=Code
+workspace_4=Media
+workspace_5=Comms
+workspace_6=
+workspace_7=
+workspace_8=
+workspace_9=
+
+# Window Rules
+# Format: class:instance:rule
+# Example: firefox:Navigator:floating
+# Rules: floating, tiling, workspace=N
+
+# Auto-start Applications (one per line)
+# autostart=firefox
+# autostart=thunderbird
+
