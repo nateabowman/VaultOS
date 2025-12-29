@@ -1,0 +1,116 @@
+# VaultOS SELinux Policy Module
+# Comprehensive SELinux policies for VaultOS components
+
+policy_module(vaultos, 1.0.0)
+
+########################################
+# Declarations
+#
+
+type vaultos_t;
+type vaultos_exec_t;
+type vaultos_config_t;
+type vaultos_runtime_t;
+type vaultos_log_t;
+
+init_daemon_domain(vaultos_t, vaultos_exec_t)
+
+type vaultwm_t;
+type vaultwm_exec_t;
+type vaultwm_runtime_t;
+
+type vaultos_plugin_t;
+type vaultos_plugin_exec_t;
+
+########################################
+# VaultOS Core
+#
+
+# Allow vaultos_t to manage its own files
+manage_files_pattern(vaultos_t, vaultos_config_t, vaultos_config_t)
+manage_dirs_pattern(vaultos_t, vaultos_config_t, vaultos_config_t)
+manage_lnk_files_pattern(vaultos_t, vaultos_config_t, vaultos_config_t)
+
+# Runtime files
+manage_files_pattern(vaultos_t, vaultos_runtime_t, vaultos_runtime_t)
+manage_dirs_pattern(vaultos_t, vaultos_runtime_t, vaultos_runtime_t)
+
+# Logging
+allow vaultos_t vaultos_log_t:file { create write append };
+logging_log_file(vaultos_log_t)
+
+# Network access (for cloud sync, updates)
+corenet_tcp_sendrecv_generic_port(vaultos_t)
+corenet_tcp_connect_generic_port(vaultos_t)
+corenet_udp_sendrecv_generic_port(vaultos_t)
+
+# System access
+systemd_log_parse_environment(vaultos_t)
+systemd_dbus_chat_logind(vaultos_t)
+
+########################################
+# VaultWM Window Manager
+#
+
+# VaultWM domain
+type vaultwm_t;
+type vaultwm_exec_t;
+type vaultwm_runtime_t;
+
+init_daemon_domain(vaultwm_t, vaultwm_exec_t)
+
+# X11 access
+xserver_domtrans(vaultwm_t)
+xserver_client_exec(vaultwm_t)
+xserver_connect(vaultwm_t)
+
+# IPC
+allow vaultwm_t vaultwm_runtime_t:file { create write read unlink };
+allow vaultwm_t vaultwm_runtime_t:dir { create write read remove_name add_name };
+
+# Network (for status bar updates)
+corenet_tcp_sendrecv_generic_port(vaultwm_t)
+
+########################################
+# VaultOS Plugins
+#
+
+type vaultos_plugin_t;
+type vaultos_plugin_exec_t;
+
+# Plugin execution
+can_exec(vaultos_plugin_t, vaultos_plugin_exec_t)
+
+# Plugin file access
+manage_files_pattern(vaultos_plugin_t, vaultos_plugin_exec_t, vaultos_plugin_exec_t)
+manage_dirs_pattern(vaultos_plugin_t, vaultos_plugin_exec_t, vaultos_plugin_exec_t)
+
+# Restricted plugin access
+# Plugins should have limited system access
+dontaudit vaultos_plugin_t self:capability sys_admin;
+dontaudit vaultos_plugin_t self:capability net_admin;
+
+########################################
+# User domain transitions
+#
+
+# Allow users to execute VaultOS components
+userdom_exec_user_home_content(vaultos_t)
+userdom_exec_user_home_content(vaultwm_t)
+userdom_exec_user_home_content(vaultos_plugin_t)
+
+# Allow users to manage VaultOS config
+userdom_manage_user_home_content_dirs(vaultos_t)
+userdom_manage_user_home_content_files(vaultos_t)
+
+########################################
+# File contexts
+#
+
+files_type(vaultos_config_t)
+files_type(vaultos_runtime_t)
+files_type(vaultos_log_t)
+files_type(vaultos_exec_t)
+files_type(vaultwm_exec_t)
+files_type(vaultos_plugin_exec_t)
+

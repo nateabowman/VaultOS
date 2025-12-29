@@ -19,6 +19,8 @@
 #include <sys/time.h>
 #include <ctype.h>
 #include "../config/config.h"
+#include "../monitor/monitor.h"
+#include "../window-rules/window-rules.h"
 
 #define MAX_WINDOWS 256
 #define PIPBOY_GREEN COLOR_PIPBOY_GREEN
@@ -54,6 +56,9 @@ typedef struct {
     int is_moving;
     int resize_start_x, resize_start_y;
     int move_start_x, move_start_y;
+    MonitorManager monitor_mgr;  // Multi-monitor support
+    int current_monitor;  // Currently active monitor
+    WindowRules window_rules;  // Window rules system
 } VaultWM;
 
 VaultWM wm;
@@ -106,6 +111,16 @@ void setup_wm(void) {
     wm.current_client = -1;
     wm.is_resizing = 0;
     wm.is_moving = 0;
+    
+    /* Initialize window rules */
+    window_rules_init(&wm.window_rules);
+    // Load rules from config file
+    char rules_path[512];
+    const char *home = getenv("HOME");
+    if (home) {
+        snprintf(rules_path, sizeof(rules_path), "%s/.config/vaultwm/rules", home);
+        window_rules_load(rules_path, &wm.window_rules);
+    }
     
     /* Initialize workspaces */
     int i;
@@ -225,6 +240,12 @@ void cleanup_wm(void) {
     if (!wm.dpy) {
         return;  // Already cleaned up or never initialized
     }
+    
+    // Clean up monitor manager
+    monitor_cleanup(&wm.monitor_mgr);
+    
+    // Clean up window rules
+    window_rules_cleanup(&wm.window_rules);
     
     // Clean up status bar
     if (wm.status_bar != None) {
@@ -414,8 +435,16 @@ void draw_status_bar(void) {
     
     /* Format status bar */
     Workspace *ws = current_workspace();
-    const char *layout_name = (ws->layout_mode == 0) ? "Tiling" : 
-                              (ws->layout_mode == 1) ? "Floating" : "Monocle";
+    const char *layout_name;
+    switch (ws->layout_mode) {
+        case LAYOUT_TILING: layout_name = "Tiling"; break;
+        case LAYOUT_FLOATING: layout_name = "Floating"; break;
+        case LAYOUT_MONOCLE: layout_name = "Monocle"; break;
+        case LAYOUT_GRID: layout_name = "Grid"; break;
+        case LAYOUT_FIBONACCI: layout_name = "Fibonacci"; break;
+        case LAYOUT_DWINDLE: layout_name = "Dwindle"; break;
+        default: layout_name = "Unknown"; break;
+    }
     snprintf(status, sizeof(status), 
         "VaultOS | WS: %d | CPU: %d%% | MEM: %d%% | NET: %s | %s | %s | Clients: %d | Layout: %s | [Pip-Boy 3000]",
         wm.current_workspace + 1, cpu_usage, mem_usage, net_status, date_str, time_str, 
@@ -640,14 +669,42 @@ void manage_window(Window w) {
         return;
     }
 
+    // Get window class and instance for rules
+    XClassHint class_hint;
+    char class_name[256] = "";
+    char instance_name[256] = "";
+    
+    if (XGetClassHint(wm.dpy, w, &class_hint)) {
+        if (class_hint.res_class) {
+            strncpy(class_name, class_hint.res_class, sizeof(class_name) - 1);
+            class_name[sizeof(class_name) - 1] = '\0';
+        }
+        if (class_hint.res_name) {
+            strncpy(instance_name, class_hint.res_name, sizeof(instance_name) - 1);
+            instance_name[sizeof(instance_name) - 1] = '\0';
+        }
+        if (class_hint.res_class) XFree(class_hint.res_class);
+        if (class_hint.res_name) XFree(class_hint.res_name);
+    }
+
     Client *c = &ws->clients[ws->num_clients];
     c->win = w;
-    c->is_floating = 0;
+    c->is_floating = 0;  // Default to tiling
     c->is_mapped = 1;
     c->x = 0;
     c->y = 0;
     c->width = wa.width;
     c->height = wa.height;
+
+    // Apply window rules
+    window_rules_apply(&wm.window_rules, w, class_name, instance_name);
+    
+    // Check if rule set window to floating (simplified - full implementation would parse rule value)
+    // For now, we'll check common floating applications
+    if (strstr(class_name, "Gimp") || strstr(class_name, "Gimp") ||
+        strstr(class_name, "Pidgin") || strstr(class_name, "Pidgin")) {
+        c->is_floating = 1;
+    }
 
     /* Set border */
     XSetWindowBorderWidth(wm.dpy, w, BORDER_WIDTH);
@@ -793,7 +850,7 @@ void handle_keypress(XKeyEvent *e) {
         }
     } else if (keycode == XKeysymToKeycode(wm.dpy, XK_t)) {
         /* Toggle layout: Tiling -> Floating -> Monocle */
-        ws->layout_mode = (ws->layout_mode + 1) % 3;
+        ws->layout_mode = (ws->layout_mode + 1) % 6;  // Cycle through all layouts
         tile_windows();
         update_status_bar();
     } else if (keycode == XKeysymToKeycode(wm.dpy, XK_f)) {

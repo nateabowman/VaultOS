@@ -1,0 +1,25 @@
+# VaultWM Window Rules Configuration
+# Place this file at ~/.config/vaultwm/rules
+# Format: class:instance:type=value
+# Or: class:type=value (applies to all instances)
+
+# Auto-floating applications
+Gimp:Gimp:float=true
+Pidgin:Pidgin:float=true
+MPlayer:MPlayer:float=true
+
+# Workspace assignment
+Firefox:Navigator:workspace=1
+Alacritty:Alacritty:workspace=2
+Code:Code:workspace=3
+
+# Layout preferences
+Terminal:Terminal:layout=tiling
+FileManager:FileManager:layout=grid
+
+# Size rules (widthxheight)
+Dialog:Dialog:size=800x600
+
+# Position rules (x,y)
+Notification:Notification:position=100,100
+
